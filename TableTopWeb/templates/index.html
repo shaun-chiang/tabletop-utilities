@@ -1,4 +1,11 @@
-<html>
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "bootstrap/fixes.html" as fixes %}
+{% import "bootstrap/utils.html" as util %}
+
+{% block content %}
+{{util.flashed_messages(dismissible=True)}}
+
 <head>
 	<link rel="stylesheet" href='/static/style.css' />
 </head>
@@ -9,4 +16,10 @@
 <a href='/rpg_helper/Default'>Rpg Helper</a><br>
 <a href='/scoreboard/Default'>Score Board</a><br>
 </body>
-</html>
+
+{% endblock %}
+
+{% block head %}
+{{super()}}
+{{fixes.ie8()}}
+{% endblock %}
