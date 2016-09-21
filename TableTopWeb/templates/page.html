@@ -1,1 +1,22 @@
-<h1>Hello {{ name }}!</h1>
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "bootstrap/fixes.html" as fixes %}
+{% import "bootstrap/utils.html" as util %}
+
+{% block content %}
+{{util.flashed_messages(dismissible=True)}}
+<div class="container">
+    <head>
+        <meta charset="UTF-8">
+        <title>Tabletop RPG Helper!</title>
+    </head>
+    <body>
+    
+    </body>
+</div>
+{% endblock %}
+
+{% block head %}
+{{super()}}
+{{fixes.ie8()}}
+{% endblock %}
