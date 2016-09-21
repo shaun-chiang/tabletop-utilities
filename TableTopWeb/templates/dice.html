@@ -8,29 +8,92 @@
 
 <html>
 <head>
-	<link rel="stylesheet" href='/static/style_dice.css' />
-	<script src="/JS/dice.js"></script>
+	<link rel="stylesheet" href='/static/style_dice.css'/>
 </head>
 
 <body>
-<h1>Dice Page</h1>
-<div class="row dicerow">
-  <div class="col-sm-2">
-  	<button type="button" class="RollAll">Roll All</button>
-  </div>
-  <div class="col-sm-6" id="dice_container">
-  	<button type="button" class="dice D4 col-sm-1">D4</button>
-  	<button type="button" class="dice D4 col-sm-1">D4</button>
-  	<button type="button" class="dice D4 col-sm-1">D4</button>
-  </div>
-  <div class="col-sm-4">
-  	<button type="button" class="Add">Add D4</button>
-  	<button type="button" class="Remove">Remove D4</button>
-  </div>
-</div>
-<br>
+<div class="container">
+	<h1>Dice Page</h1>
+	<div class="row dicerow">
+	  <div class="col-sm-2">
+	  	<button type="button" class="RollAll">Roll All D4</button>
+	  </div>
+	  <div class="col-sm-6 dice_container">
+	  	<button type="button" class="dice D4 col-sm-1">D4</button>
+	  	<button type="button" class="dice D4 col-sm-1">D4</button>
+	  	<button type="button" class="dice D4 col-sm-1">D4</button>
+	  </di
+	  <div class="col-sm-4">
+	  	<button type="button" class="Add">Add D4</button>
+	  	<button type="button" class="Remove">Remove D4</button>
+	  </div>
+	</div>
 
-<a href='/'>Back</a><br>
+	<div class="row dicerow">
+	  <div class="col-sm-2">
+	  	<button type="button" class="RollAll">Roll All D6</button>
+	  </div>
+	  <div class="col-sm-6 dice_container">
+	  	<button type="button" class="dice D6 col-sm-1">D6</button>
+	  	<button type="button" class="dice D6 col-sm-1">D6</button>
+	  	<button type="button" class="dice D6 col-sm-1">D6</button>
+	  </div>
+	  <div class="col-sm-4">
+	  	<button type="button" class="Add">Add D6</button>
+	  	<button type="button" class="Remove">Remove D6</button>
+	  </div>
+	</div>
+
+	<div class="row dicerow">
+	  <div class="col-sm-2">
+	  	<button type="button" class="RollAll">Roll All D8</button>
+	  </div>
+	  <div class="col-sm-6 dice_container">
+	  	<button type="button" class="dice D8 col-sm-1">D8</button>
+	  	<button type="button" class="dice D8 col-sm-1">D8</button>
+	  	<button type="button" class="dice D8 col-sm-1">D8</button>
+	  </div>
+	  <div class="col-sm-4">
+	  	<button type="button" class="Add">Add D8</button>
+	  	<button type="button" class="Remove">Remove D8</button>
+	  </div>
+	</div>
+
+	<div class="row dicerow">
+	  <div class="col-sm-2">
+	  	<button type="button" class="RollAll">Roll All D10</button>
+	  </div>
+	  <div class="col-sm-6 dice_container">
+	  	<button type="button" class="dice D10 col-sm-1">D10</button>
+	  	<button type="button" class="dice D10 col-sm-1">D10</button>
+	  	<button type="button" class="dice D10 col-sm-1">D10</button>
+	  </div>
+	  <div class="col-sm-4">
+	  	<button type="button" class="Add">Add D10</button>
+	  	<button type="button" class="Remove">Remove D10</button>
+	  </div>
+	</div>
+
+	<div class="row dicerow">
+	  <div class="col-sm-2">
+	  	<button type="button" class="RollAll">Roll All D12</button>
+	  </div>
+	  <div class="col-sm-6 dice_container">
+	  	<button type="button" class="dice D12 col-sm-1">D12</button>
+	  	<button type="button" class="dice D12 col-sm-1">D12</button>
+	  	<button type="button" class="dice D12 col-sm-1">D12</button>
+	  </div>
+	  <div class="col-sm-4">
+	  	<button type="button" class="Add">Add D12</button>
+	  	<button type="button" class="Remove">Remove D12</button>
+	  </div>
+	</div>
+
+	<br>
+
+	<a href='/'>Back</a><br>
+</div>
+<script type="text/javascript" src="/scripts/dice.js"></script>
 </body>
 </html>
 

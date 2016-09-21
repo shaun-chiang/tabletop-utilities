@@ -6,26 +6,36 @@ body {
 	text-align: center;
 }
 
-.dice_container {
-	text-align: left;
-}
+/*.dice_container {
+	text-align: center; !important;
+}*/
 
 .dice {
-	margin-left: 10px;
-	margin-right: 10px;
+	height: 50px;
+	width: 50px;
+	margin: 10px;
 }
 
 .Add {
 	background-color: green;
 	color: white;
+	margin: 10px;
+	height: 50px;
+	width: 100px;
 }
 
 .Remove {
 	background-color: red;
 	color: white;
+	margin: 10px;
+	height: 50px;
+	width: 100px;
 }
 
 .RollAll {
 	background-color: blue;
 	color: white;
+	margin: 10px;
+	height: 50px;
+	width: 100px;
 }
