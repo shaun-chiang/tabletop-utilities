@@ -1,0 +1,31 @@
+body {
+
+}
+
+.dicerow div {
+	text-align: center;
+}
+
+.dice_container {
+	text-align: left;
+}
+
+.dice {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.Add {
+	background-color: green;
+	color: white;
+}
+
+.Remove {
+	background-color: red;
+	color: white;
+}
+
+.RollAll {
+	background-color: blue;
+	color: white;
+}

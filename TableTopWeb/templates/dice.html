@@ -1,11 +1,42 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "bootstrap/fixes.html" as fixes %}
+{% import "bootstrap/utils.html" as util %}
+
+{% block content %}
+{{util.flashed_messages(dismissible=True)}}
+
 <html>
 <head>
-	<link rel="stylesheet" href='/static/style.css' />
+	<link rel="stylesheet" href='/static/style_dice.css' />
 	<script src="/JS/dice.js"></script>
 </head>
 
 <body>
-<h1>Dice Page</h1><br>
+<h1>Dice Page</h1>
+<div class="row dicerow">
+  <div class="col-sm-2">
+  	<button type="button" class="RollAll">Roll All</button>
+  </div>
+  <div class="col-sm-6" id="dice_container">
+  	<button type="button" class="dice D4 col-sm-1">D4</button>
+  	<button type="button" class="dice D4 col-sm-1">D4</button>
+  	<button type="button" class="dice D4 col-sm-1">D4</button>
+  </div>
+  <div class="col-sm-4">
+  	<button type="button" class="Add">Add D4</button>
+  	<button type="button" class="Remove">Remove D4</button>
+  </div>
+</div>
+<br>
+
 <a href='/'>Back</a><br>
 </body>
 </html>
+
+{% endblock %}
+
+{% block head %}
+{{super()}}
+{{fixes.ie8()}}
+{% endblock %}
