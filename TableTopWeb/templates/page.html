@@ -4,14 +4,33 @@
 {% import "bootstrap/utils.html" as util %}
 
 {% block content %}
-{{util.flashed_messages(dismissible=True)}}
+
 <div class="container">
     <head>
         <meta charset="UTF-8">
-        <title>Tabletop RPG Helper!</title>
+        <title>Trending Games!</title>
     </head>
     <body>
-    
+        <h1>Trending Games!</h1>
+        <table class="table">
+            <thead>
+              <tr>
+                <th>Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for key, value in hot_items_dict.iteritems() %}
+
+              <tr>
+                  <script>
+                      document.write('<th> <a href="https://boardgamegeek.com/boardgame/' + {{ key }}+'">{{ value }}</a> </th>')
+                  </script>
+                </tr>
+
+              {% endfor %}
+            </tbody>
+         </table>
+    	<script type=text/javascript src="{{url_for('static', filename='jquery-3.1.0.min.js') }}"></script>
     </body>
 </div>
 {% endblock %}

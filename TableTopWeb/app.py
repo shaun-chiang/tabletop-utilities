@@ -1,10 +1,9 @@
 
 from flask import Flask, render_template, flash,request, redirect, url_for
 from flask_bootstrap import Bootstrap
-
+from boardgamegeek import BoardGameGeek
 from wtforms import StringField, SubmitField
 from flask_wtf import Form
-import random
 
 app = Flask(__name__)
 scoreboard_dict = dict()
@@ -50,14 +49,19 @@ def scoreboardid(id):
         return render_template('invalid_scoreboard.html')
 
 
-@app.route('/rpg_helper/<name>')
-def rpg_helper(name):
-    #TODO: rpg_helper
-    return render_template('page.html', name=name)
+@app.route('/trending_games')
+def trending_games():
+    #TODO: trending_games
+    bgg = BoardGameGeek()
+    hot_items_dict = dict()
+    for item in bgg.hot_items("boardgame"):
+        # print "{0}, https://boardgamegeek.com/boardgame/{1}".format(item.name,item.id)
+        hot_items_dict[item.id] = item.name
+    return render_template('page.html', hot_items_dict = hot_items_dict)
 
 @app.route('/dice_roller')
 def dice_rollers():
-    #TODO: dice_rollers
+    #TODO: dice_roller
     return render_template('dice.html')
 
 if __name__ == '__main__':

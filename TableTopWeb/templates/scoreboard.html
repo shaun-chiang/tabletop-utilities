@@ -4,14 +4,31 @@
 {% import "bootstrap/utils.html" as util %}
 
 {% block content %}
-{{util.flashed_messages(dismissible=True)}}
 
 <head>
     <meta charset="UTF-8">
     <title>Scoreboard For Room {{id}}</title>
 </head>
     <body>
-        <h1>TODO: Scoreboard</h1>
+        <h1>Scoreboard For Room {{id}}</h1>
+        <table class="table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for key, value in result.iteritems() %}
+
+              <tr>
+                <th> {{ key }} </th>
+                <td> {{ value }} </td>
+              </tr>
+
+              {% endfor %}
+            </tbody>
+         </table>
     </body>
 <body>
 
