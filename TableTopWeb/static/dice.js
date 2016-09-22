@@ -4,6 +4,5 @@ function DiceJS() {
 }
 
 window.onload = function() {
-	console.log("Np");
   	window.DiceJS = new DiceJS();
 };
