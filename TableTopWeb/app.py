@@ -26,20 +26,21 @@ def scoreboard():
     if request.method == 'POST' and form.validate():
         input = form.player_names_field.data
         list_of_names = input.split(",")
+        current_room_id+=1
+        scoreboard_dict[current_room_id]=dict()
         for i in xrange(len(list_of_names)):
             list_of_names[i] = list_of_names[i].strip()
-            current_room_id+=1
-            scoreboard_dict[current_room_id]=dict()
             scoreboard_dict[current_room_id][list_of_names[i]] = 0
         return redirect(url_for('scoreboardid', id=current_room_id))
-
+    print(scoreboard_dict)
     return render_template('scoreboard_home.html', form=form)
 
 @app.route('/scoreboard/<id>')
 def scoreboardid(id):
     global current_room_id
     try:
-        if (scoreboard_dict[int(id)]):
+        if scoreboard_dict[int(id)]:
+            print(scoreboard_dict[int(id)])
             return render_template('scoreboard.html', id=id)
         else:
             current_room_id += 1
