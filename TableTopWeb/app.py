@@ -1,4 +1,3 @@
-
 from flask import Flask, render_template, flash,request, redirect, url_for
 from flask_bootstrap import Bootstrap
 from boardgamegeek import BoardGameGeek
