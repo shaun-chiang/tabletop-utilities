@@ -1,3 +1,9 @@
+# Name: app.py
+# Description: Main app for TableTopWeb, a page holding common utilities for tabletop gaming.
+#              Please install requirements in requirements.txt first.
+
+
+
 from flask import Flask, render_template, flash,request, redirect, url_for
 from flask_bootstrap import Bootstrap
 from boardgamegeek import BoardGameGeek
@@ -26,7 +32,7 @@ def scoreboard():
         list_of_names = input.split(",")
         current_room_id+=1
         scoreboard_dict[current_room_id]=dict()
-        for i in xrange(len(list_of_names)):
+        for i in range(len(list_of_names)):
             list_of_names[i] = list_of_names[i].strip()
             scoreboard_dict[current_room_id][list_of_names[i]] = 0
         return redirect(url_for('scoreboardid', id=current_room_id))
@@ -54,7 +60,6 @@ def trending_games():
     bgg = BoardGameGeek()
     hot_items_dict = dict()
     for item in bgg.hot_items("boardgame"):
-        # print "{0}, https://boardgamegeek.com/boardgame/{1}".format(item.name,item.id)
         hot_items_dict[item.id] = item.name
     return render_template('page.html', hot_items_dict = hot_items_dict)
 
