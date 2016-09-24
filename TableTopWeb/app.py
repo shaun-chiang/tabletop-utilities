@@ -6,6 +6,8 @@
 
 from flask import Flask, render_template, flash,request, redirect, url_for
 from flask_bootstrap import Bootstrap
+from flask_nav import Nav
+from flask_nav.elements import Navbar, View, Text
 from boardgamegeek import BoardGameGeek
 from wtforms import StringField, SubmitField
 from flask_wtf import Form
@@ -75,4 +77,12 @@ if __name__ == '__main__':
     app.config['SECRET_KEY'] = 'devkey'
     app.config['RECAPTCHA_PUBLIC_KEY'] = \
         '6Lfol9cSAAAAADAkodaYl9wvQCwBMr3qGR_PPHcw'
+    nav = Nav()
+    nav.register_element('top', Navbar(
+    View('TableTopWeb', '.index'),
+    View('Dice Roller', '.dice_rollers'),
+    View('Scoreboard', '.scoreboard'),
+    View('Trending Games', '.trending_games'),
+    Text('Networks Lab 2 by Junsheng & Shaun'),))
+    nav.init_app(app)
     app.run(debug=True, host='0.0.0.0')
