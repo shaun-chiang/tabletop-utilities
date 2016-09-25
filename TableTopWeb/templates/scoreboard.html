@@ -10,38 +10,60 @@
     <meta charset="UTF-8">
     <title>Scoreboard For Room {{id}}</title>
 </head>
-    <body>
-        <h1>Scoreboard For Room {{id}}</h1>
-        <table class="table">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Score</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for key, value in result.items() %}
-
-              <tr>
-                <th> {{ key }} </th>
-                <td> {{ value }} </td>
-                <td>
-                    <button type="button" class="btn btn-default">
-                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                    </button>
-                    <button type="button" class="btn btn-default">
-                        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-                    </button>
-                </td>
-              </tr>
-
-              {% endfor %}
-            </tbody>
-         </table>
-    </body>
 <body>
+    <h1>Scoreboard For Room {{id}}</h1>
+    <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for key, value in result.items() %}
 
+          <tr>
+            <th> {{ key }} </th>
+            <script>
+              document.write('<td id="'+{{loop.index}}+'"> {{ value }} </td>')
+            </script>
+            <td>
+                <button type="button" class="btn btn-default" id="AddButton" onclick="increment(this)">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-default" id="MinusButton" onclick ="decrement(this)">
+                    <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                </button>
+            </td>
+          </tr>
+
+          {% endfor %}
+        </tbody>
+     </table>
+    <script type="text/javascript">
+        function increment(x) {
+            $.getJSON('/_increment_number', {
+                 a: x.closest('tr').rowIndex,
+                 b: {{id}}
+            }, function(data) {
+                var a = x.closest('tr').rowIndex;
+                $("#"+a).text(data.result);
+            });
+            return false;
+        }
+        function decrement(x) {
+            $.getJSON('/_decrement_number', {
+                 a: x.closest('tr').rowIndex,
+                 b: {{id}}
+            }, function(data) {
+                var a = x.closest('tr').rowIndex;
+                $("#"+a).text(data.result);
+            });
+            return false;
+        }
+    </script>
 </body>
+
 
 {% endblock %}
 
