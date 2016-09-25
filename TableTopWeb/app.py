@@ -24,7 +24,6 @@ class scoreboard_form(Form):
 
 @app.route('/')
 def index():
-    # TODO: Homepage & dice roller
     return render_template('index.html')
 
 
@@ -40,7 +39,6 @@ def scoreboard():
         for i in range(len(list_of_names)):
             list_of_names[i] = list_of_names[i].strip()
             scoreboard_dict[current_room_id][list_of_names[i]] = 0
-        print(scoreboard_dict)
         return redirect(url_for('scoreboardid', id=current_room_id))
     return render_template('scoreboard_home.html', form=form)
 
@@ -50,7 +48,6 @@ def scoreboardid(id):
     global current_room_id
     try:
         if scoreboard_dict[int(id)]:
-            print("HERE! {0}".format(scoreboard_dict[int(id)]))
             return render_template('scoreboard.html', id=int(id), result=scoreboard_dict[int(id)])
     except:
         e = sys.exc_info()[0]
@@ -63,7 +60,6 @@ def increment_number():
     a = request.args.get('a', 0, type=int)
     b = request.args.get('b', 0, type=int)
     scoreboard_dict[b][list(scoreboard_dict[b].items())[a-1][0]] += 1
-    print(scoreboard_dict)
     return jsonify(result=scoreboard_dict[b][list(scoreboard_dict[b].items())[a-1][0]])
 
 @app.route('/_decrement_number')
@@ -71,13 +67,11 @@ def decrement_number():
     a = request.args.get('a', 0, type=int)
     b = request.args.get('b', 0, type=int)
     scoreboard_dict[b][list(scoreboard_dict[b].items())[a - 1][0]] -= 1
-    print(scoreboard_dict)
     return jsonify(result=scoreboard_dict[b][list(scoreboard_dict[b].items())[a - 1][0]])
 
 
 @app.route('/trending_games')
 def trending_games():
-    # TODO: trending_games
     bgg = BoardGameGeek()
     hot_items_dict = dict()
     for item in bgg.hot_items("boardgame"):
@@ -87,7 +81,6 @@ def trending_games():
 
 @app.route('/dice_roller')
 def dice_rollers():
-    # TODO: dice_roller
     return render_template('dice.html')
 
 
