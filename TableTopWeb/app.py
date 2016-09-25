@@ -8,7 +8,7 @@ from flask_bootstrap import Bootstrap
 from flask_nav import Nav
 from flask_nav.elements import Navbar, View, Text
 from boardgamegeek import BoardGameGeek
-from wtforms import StringField, SubmitField, validators
+from wtforms import StringField, SubmitField, validators, IntegerField
 from flask_wtf import Form
 
 app = Flask(__name__)
@@ -19,39 +19,51 @@ current_room_id = 0
 class scoreboard_form(Form):
     player_names_field = StringField('Player Names:', [validators.DataRequired()],
                                      description='Input your player names seperated by commas. (e.g. Shaun, Ryan, Junsheng)')
-    submit_button = SubmitField("Let's Play!!")
+    submit_button = SubmitField("Start Game!")
+
+
+class room_form(Form):
+    room_field = IntegerField('Room Number:', [validators.DataRequired()],
+                              description='Or if you know your room number, write it here! (e.g. 123)')
+    submit_button = SubmitField("Join Game!")
 
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
-
 @app.route('/scoreboard', methods=['GET', 'POST'])
 def scoreboard():
     global current_room_id
     form = scoreboard_form()
+    room = room_form()
     if request.method == 'POST' and form.validate():
-        input = form.player_names_field.data
-        list_of_names = input.split(",")
+        inp = form.player_names_field.data
+
+        list_of_names = inp.split(",")
         current_room_id += 1
         scoreboard_dict[current_room_id] = OrderedDict()
         for i in range(len(list_of_names)):
             list_of_names[i] = list_of_names[i].strip()
             scoreboard_dict[current_room_id][list_of_names[i]] = 0
         return redirect(url_for('scoreboardid', id=current_room_id))
-    return render_template('scoreboard_home.html', form=form)
+    if request.method == 'POST' and room.validate():
+        inp = room.room_field.data
+        try:
+            return redirect(url_for('scoreboardid', id=inp))
+        except:
+            print(sys.exc_info())
+            return render_template('invalid_scoreboard.html')
+    return render_template('scoreboard_home.html', form=form, room=room)
 
 
 @app.route('/scoreboard/<id>')
 def scoreboardid(id):
-    global current_room_id
     try:
         if scoreboard_dict[int(id)]:
             return render_template('scoreboard.html', id=int(id), result=scoreboard_dict[int(id)])
     except:
-        e = sys.exc_info()[0]
-        print(e)
+        print(sys.exc_info())
         return render_template('invalid_scoreboard.html')
 
 
@@ -59,8 +71,9 @@ def scoreboardid(id):
 def increment_number():
     a = request.args.get('a', 0, type=int)
     b = request.args.get('b', 0, type=int)
-    scoreboard_dict[b][list(scoreboard_dict[b].items())[a-1][0]] += 1
-    return jsonify(result=scoreboard_dict[b][list(scoreboard_dict[b].items())[a-1][0]])
+    scoreboard_dict[b][list(scoreboard_dict[b].items())[a - 1][0]] += 1
+    return jsonify(result=scoreboard_dict[b][list(scoreboard_dict[b].items())[a - 1][0]])
+
 
 @app.route('/_decrement_number')
 def decrement_number():
