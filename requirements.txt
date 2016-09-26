@@ -1,5 +1,6 @@
 boardgamegeek==0.13.2
 Flask==0.11.1
 Flask_Bootstrap==3.3.7.0
+flask_nav==0.5
 Flask_WTF==0.12
 WTForms==2.1
